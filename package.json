@@ -1,0 +1,37 @@
+{
+	"name": "backend",
+	"version": "1.0.0",
+	"description": "DevDesk",
+	"main": "index.js",
+	"scripts": {
+		"server": "nodemon index.js",
+		"start": "node index.js",
+		"test": "jest --watch"
+	},
+	"jest": {
+		"testEnvironment": "node"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Dev-Desk-queque/backend.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Dev-Desk-queque/backend/issues"
+	},
+	"homepage": "https://github.com/Dev-Desk-queque/backend#readme",
+	"dependencies": {
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"helmet": "^4.1.0",
+		"knex": "^0.21.5",
+		"pg": "^8.3.2",
+		"sqlite3": "^5.0.0"
+	},
+	"devDependencies": {
+		"jest": "^26.4.2",
+		"nodemon": "^2.0.4",
+		"supertest": "^4.0.2"
+	}
+}
