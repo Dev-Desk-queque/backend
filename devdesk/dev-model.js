@@ -18,16 +18,16 @@ module.exports = {
 // ------------------------------------------------------------------------------
 
 function getQuestions() {
-	return db("tickets").select("tickets.questions");
+	return db("questions");
 }
 function getAnswers() {
-	return db("tickets").select("tickets.answers");
+	return db("answers");
 }
 function getQuestionsByID(id) {
-	return db("tickets").where({ student_question: id }).first();
+	return db("questions").where({ question: id }).first();
 }
 function getAnswersByID(id) {
-	return db("tickets").where({ helper_answer: id }).first();
+	return db("answers").where({ answer: id }).first();
 }
 
 // ------------------------------------------------------------------------------
