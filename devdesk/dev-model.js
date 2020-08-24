@@ -5,6 +5,8 @@ module.exports = {
 	getAnswers,
 	getQuestionsByID,
 	getAnswersByID,
+	addUser,
+	findUserBy,
 	addQuestion,
 	addAnswer,
 	updateQuestion,
@@ -34,8 +36,20 @@ function getAnswersByID(id) {
 // ALL POST REQUESTS
 // ------------------------------------------------------------------------------
 
+async function addUser(user) {
+	try {
+		const [id] = await db("accounts").insert(user, "id");
+	} catch (error) {
+		throw error;
+	}
+}
+function findUserBy(filter) {
+	return db("accounts")
+		.where(filter)
+		.select("accounts.id", "accounts.username", "accounts.password");
+}
 function addQuestion(question) {
-	return db("tickets")
+	return db("questions")
 		.insert(question)
 		.returning("id")
 		.then((ids) => {
@@ -45,7 +59,7 @@ function addQuestion(question) {
 		});
 }
 function addAnswer(answer) {
-	return db("tickets")
+	return db("answers")
 		.insert(answer)
 		.returning("id")
 		.then((ids) => {
@@ -60,7 +74,7 @@ function addAnswer(answer) {
 // ------------------------------------------------------------------------------
 
 function updateQuestion(id, changes) {
-	return db("tickets")
+	return db("questions")
 		.where({ id })
 		.update(changes)
 		.then(() => {
@@ -68,7 +82,7 @@ function updateQuestion(id, changes) {
 		});
 }
 function updateAnswer(id, changes) {
-	return db("tickets")
+	return db("answers")
 		.where({ id })
 		.update(changes)
 		.then(() => {
@@ -81,8 +95,8 @@ function updateAnswer(id, changes) {
 // ------------------------------------------------------------------------------
 
 function deleteQuestion(id) {
-	return db("tickets").where({ id }).del();
+	return db("questions").where({ id }).del();
 }
 function deleteAnswer(id) {
-	return db("tickets").where({ id }).del();
+	return db("answers").where({ id }).del();
 }
