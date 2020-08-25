@@ -1,12 +1,14 @@
 const db = require("../data/db-config.js");
 
 module.exports = {
+	getAllUsers,
+	getUserByID,
 	getQuestions,
 	getAnswers,
 	getQuestionsByID,
 	getAnswersByID,
+	getUserByLogin,
 	addUser,
-	findUserBy,
 	addQuestion,
 	addAnswer,
 	updateQuestion,
@@ -19,6 +21,15 @@ module.exports = {
 // ALL GET REQUESTS
 // ------------------------------------------------------------------------------
 
+function getAllUsers() {
+	return db("accounts");
+}
+function getUserByID(id) {
+	return db("accounts").where({ id });
+}
+function getUserByLogin(username) {
+	return db("accounts").where(username);
+}
 function getQuestions() {
 	return db("questions");
 }
@@ -26,7 +37,7 @@ function getAnswers() {
 	return db("answers");
 }
 function getQuestionsByID(id) {
-	return db("questions").where({ question: id }).first();
+	return db("questions").where({ id });
 }
 function getAnswersByID(id) {
 	return db("answers").where({ answer: id }).first();
@@ -39,15 +50,15 @@ function getAnswersByID(id) {
 async function addUser(user) {
 	try {
 		const [id] = await db("accounts").insert(user, "id");
+		return findUserBy(id);
 	} catch (error) {
 		throw error;
 	}
 }
-function findUserBy(filter) {
-	return db("accounts")
-		.where(filter)
-		.select("accounts.id", "accounts.username", "accounts.password");
-}
+
+// .where(filter)
+// .select("accounts.id", "accounts.username", "accounts.password");
+
 function addQuestion(question) {
 	return db("questions")
 		.insert(question)
