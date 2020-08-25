@@ -23,25 +23,25 @@ module.exports = {
 
 function getAllUsers() {
 	return db("accounts");
-}
+} // WORKING
 function getUserByID(id) {
 	return db("accounts").where({ id });
-}
+} // WORKING
 function getUserByLogin(username) {
 	return db("accounts").where(username);
-}
+} // WORKING
 function getQuestions() {
 	return db("questions");
-}
+} // WORKING
 function getAnswers() {
 	return db("answers");
-}
+} // WORKING
 function getQuestionsByID(id) {
 	return db("questions").where({ id });
-}
+} // WORKING
 function getAnswersByID(id) {
-	return db("answers").where({ answer: id }).first();
-}
+	return db("answers").where({ id });
+} // WORKING
 
 // ------------------------------------------------------------------------------
 // ALL POST REQUESTS
@@ -54,7 +54,7 @@ async function addUser(user) {
 	} catch (error) {
 		throw error;
 	}
-}
+} // WORKING
 
 // .where(filter)
 // .select("accounts.id", "accounts.username", "accounts.password");
@@ -68,7 +68,7 @@ function addQuestion(question) {
 
 			return getQuestionsByID(id);
 		});
-}
+} // WORKING
 function addAnswer(answer) {
 	return db("answers")
 		.insert(answer)
@@ -78,7 +78,7 @@ function addAnswer(answer) {
 
 			return getAnswersByID(id);
 		});
-}
+} // WORKING
 
 // ------------------------------------------------------------------------------
 // ALL PUT REQUESTS
@@ -91,7 +91,7 @@ function updateQuestion(id, changes) {
 		.then(() => {
 			return getQuestionsByID(id);
 		});
-}
+} // WORKING
 function updateAnswer(id, changes) {
 	return db("answers")
 		.where({ id })
@@ -99,7 +99,7 @@ function updateAnswer(id, changes) {
 		.then(() => {
 			return getAnswersByID(id);
 		});
-}
+} // WORKING
 
 // ------------------------------------------------------------------------------
 // ALL DELETE REQUESTS
@@ -107,7 +107,7 @@ function updateAnswer(id, changes) {
 
 function deleteQuestion(id) {
 	return db("questions").where({ id }).del();
-}
+} // WORKING
 function deleteAnswer(id) {
 	return db("answers").where({ id }).del();
-}
+} // WORKING

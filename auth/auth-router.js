@@ -36,7 +36,7 @@ router.post("/register", (req, res) => {
 				"register - Username and Password cannot be null or an empty string!",
 		});
 	}
-});
+}); // WORKING
 
 // LOGIN AN EXISTING USER -- NO LOGOUT IS REQUIRED SINCE LOGOUT IS CLIENT SIDE
 router.post("/login", (req, res) => {
@@ -68,31 +68,7 @@ router.post("/login", (req, res) => {
 			message: "Username and Password cannot be null or an empty string!",
 		});
 	}
-});
-
-// GET ALL USERS
-router.get("/users", (req, res) => {
-	DevDesk.getAllUsers()
-		.then((users) => {
-			res.status(201).json({ data: users });
-		})
-		.catch((err) => {
-			res.status(404).json({ message: "cannot find list of users" });
-		});
-});
-
-// GET USER BY ID
-router.get("/user/:id", (req, res) => {
-	const { id } = req.params;
-
-	DevDesk.getUserByID(id)
-		.then((user) => {
-			res.status(201).json(user);
-		})
-		.catch((err) => {
-			res.status(404).json({ message: "cannot find list of users" });
-		});
-});
+}); // WORKING
 
 function signToken(user) {
 	const payload = {
@@ -110,43 +86,3 @@ function signToken(user) {
 }
 
 module.exports = router;
-
-// REGISTER NEW USER
-// router.post("/register", (req, res) => {
-// 	const credentials = req.body;
-
-// 	if (isValid(credentials)) {
-// 		const rounds = process.env.BCRYPT_ROUNDS || 8;
-
-// 		// hash the password
-// 		if (credentials.password < 5) {
-// 			res.status(401).json({
-// 				message: "Password invalid, must contain 6 or more characters",
-// 			});
-// 		} else {
-// 			const hash = bcryptjs.hashSync(credentials.password, rounds);
-// 			credentials.password = hash;
-// 		}
-
-// 		// save the user to the database
-// 		if (credentials.username.length < 3) {
-// 			res.status(401).json({
-// 				message: "Username invalid, must contain 4 or more characters",
-// 			});
-// 		} else if (credentials.is_helper && credentials.is_student === false) {
-// 			res.status(401).json({ message: "Must select at least one user type" });
-// 		} else {
-// 			DevDesk.addUser(credentials)
-// 				.then((user) => {
-// 					res.status(201).json("register success", { data: user });
-// 				})
-// 				.catch((err) => {
-// 					res.status(500).json({ err });
-// 				});
-// 		}
-// 	} else {
-// 		res.status(400).json({
-// 			message: "inValid error - username or password, fields cannot be empty",
-// 		});
-// 	}
-// });
