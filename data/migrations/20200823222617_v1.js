@@ -17,8 +17,8 @@ exports.up = function (knex) {
 				.references("accounts.id")
 				.onDelete("CASCADE")
 				.onUpdate("CASCADE");
-			tbl.text("topic");
-			tbl.text("question");
+			tbl.text("topic").notNullable();
+			tbl.text("question").notNullable();
 			tbl.text("what_I_tried");
 			tbl.text("code_language");
 		})

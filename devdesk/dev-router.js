@@ -68,7 +68,7 @@ router.get("/question/:id/answer", (req, res) => {
 // ALL POST REQUESTS
 // ------------------------------------------------------------------------------
 
-router.post("/questions/:id", (req, res) => {
+router.post("/questions", (req, res) => {
 	const questionData = req.body;
 
 	DevDeskModel.addQuestion(questionData)
