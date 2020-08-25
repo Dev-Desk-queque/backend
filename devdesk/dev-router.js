@@ -96,7 +96,7 @@ router.post("/question/:id/answer", (req, res) => {
 // ALL PUT REQUESTS
 // ------------------------------------------------------------------------------
 
-router.put("/question/id", (req, res) => {
+router.put("/question/:id", (req, res) => {
 	const { id } = req.params;
 	const changes = req.body;
 
@@ -142,7 +142,7 @@ router.put("/question/:id/answer", (req, res) => {
 // ALL DELETE REQUESTS
 // ------------------------------------------------------------------------------
 
-router.delete("/question/id", (req, res) => {
+router.delete("/question/:id", (req, res) => {
 	const { id } = req.params;
 
 	DevDeskModel.deleteQuestion(id)
