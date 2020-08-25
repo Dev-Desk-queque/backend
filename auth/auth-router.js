@@ -27,7 +27,11 @@ router.post("/register", (req, res) => {
 				res.status(201).json("register success", { data: user });
 			})
 			.catch((error) => {
-				res.status(500).json({ message: error.message });
+				res
+					.status(500)
+					.json({
+						message: "registry .catch triggered, registry was not successful",
+					});
 			});
 	} else {
 		res.status(400).json({
