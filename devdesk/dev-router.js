@@ -16,7 +16,7 @@ router.get("/questions", (req, res) => {
 		.catch((error) => {
 			res.status(500).json({ message: "Failed to get questions" });
 		});
-});
+}); // WORKING
 
 router.get("/answers", (req, res) => {
 	DevDeskModel.getAnswers()
@@ -44,7 +44,7 @@ router.get("/question/:id", (req, res) => {
 		.catch((error) => {
 			res.status(500).json({ message: "Failed to get question" });
 		});
-});
+}); // WORKING
 
 router.get("/question/:id/answer", (req, res) => {
 	const { id } = req.params;
@@ -63,6 +63,22 @@ router.get("/question/:id/answer", (req, res) => {
 			res.status(500).json({ message: "Failed to get answer" });
 		});
 });
+
+router.get("/:id", (req, res) => {
+	const { id } = req.params;
+
+	DevDeskModel.findUserBy(id)
+		.then((user) => {
+			if (user) {
+				res.json(user);
+			} else {
+				res.status(404).json({ message: "Could not find user with given id" });
+			}
+		})
+		.catch((error) => {
+			res.status(500).json({ message: "Failed to get user" });
+		});
+}); // WORKING
 
 // ------------------------------------------------------------------------------
 // ALL POST REQUESTS
