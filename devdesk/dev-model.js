@@ -50,7 +50,7 @@ function getAnswersByID(id) {
 async function addUser(user) {
 	try {
 		const [id] = await db("accounts").insert(user, "id");
-		return findUserBy(id);
+		return getUserByID(id);
 	} catch (error) {
 		throw error;
 	}
