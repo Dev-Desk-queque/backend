@@ -48,10 +48,10 @@ module.exports = {
 			max: 10,
 		},
 		migrations: {
-			tableName: "./data/migrations",
+			directory: __dirname + "./data/migrations",
 		},
 		seeds: {
-			directory: "./data/seeds",
+			directory: __dirname + "./data/seeds",
 		},
 	},
 };
