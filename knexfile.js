@@ -1,7 +1,7 @@
 // Update with your config settings.
 
 const pgConnection =
-	process.env.DATABASE_URL || "postgresql://postgres@localhost:";
+	process.env.DATABASE_URL || "postgresql://postgres@localhost/api/devdesk";
 
 module.exports = {
 	development: {
@@ -41,18 +41,17 @@ module.exports = {
 	},
 
 	production: {
-		client: "postgresql",
-		connection: {
-			database: "my_db",
-			user: "username",
-			password: "password",
-		},
+		client: "pg",
+		connection: pgConnection,
 		pool: {
 			min: 2,
 			max: 10,
 		},
 		migrations: {
-			tableName: "knex_migrations",
+			tableName: "./data/migrations",
+		},
+		seeds: {
+			directory: "./data/seeds",
 		},
 	},
 };
