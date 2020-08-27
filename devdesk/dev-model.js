@@ -39,8 +39,10 @@ function getAnswers() {
 function getQuestionsByID(id) {
 	return db("questions").where({ id });
 } // WORKING
+
+// want to change this to return answers where question id equals answers
 function getAnswersByID(id) {
-	return db("answers").where({ id });
+	return db("answers").where({ question_id: id });
 } // WORKING
 
 // ------------------------------------------------------------------------------
@@ -70,14 +72,13 @@ function addQuestion(question) {
 		});
 } // WORKING
 function addAnswer(answer) {
-	return db("answers")
-		.insert(answer)
-		.returning("id")
-		.then((ids) => {
-			const id = ids[0];
+	return db("answers").insert(answer);
+	// .returning("id")
+	// .then((ids) => {
+	// 	const id = ids[0];
 
-			return getAnswersByID(id);
-		});
+	// 	return getAnswersByID(id);
+	// });
 } // WORKING
 
 // ------------------------------------------------------------------------------

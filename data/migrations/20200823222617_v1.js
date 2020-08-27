@@ -25,6 +25,13 @@ exports.up = function (knex) {
 		.createTable("answers", (tbl) => {
 			tbl.increments("id"); // Primary Key
 			tbl
+				.integer("question_id")
+				.unsigned()
+				.notNullable()
+				.references("questions.id")
+				.onDelete("CASCADE")
+				.onUpdate("CASCADE");
+			tbl
 				.integer("answer_user_id")
 				.unsigned()
 				.notNullable()
