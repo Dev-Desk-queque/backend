@@ -10,7 +10,7 @@ describe("testing auth-router registry and login", () => {
 	}); // PASSING
 
 	// testing the registration of a user!
-	describe("POST /register", () => {
+	describe("POST /register & /login", () => {
 		it("should register an account, login that account, return a token", async () => {
 			//step 1 check that users has been truncated
 			const authTest1 = await db("accounts");
@@ -33,13 +33,13 @@ describe("testing auth-router registry and login", () => {
 			});
 
 			// step 4 check the user login was successful in returning a token
-			console.log(res.body);
+			//// console.log(res.body);
 			// result of log
 			// message: 'Welcome to our API',
 			// token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxLCJ1c2VybmFtZSI6InBvc3RVc2VybmFtZSIsImlhdCI6MTU5ODU0NDAzNCwiZXhwIjoxNTk4NjMwNDM0fQ.JjOtnbk_h2VhmT4V8wEYOEVOdJYq9Awaxi8mE0aw3i4'
 
 			// step 5 single out the token
-			console.log(res.body.token);
+			//// console.log(res.body.token);
 		});
 	}); // PASSING
 

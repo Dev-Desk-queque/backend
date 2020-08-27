@@ -49,10 +49,10 @@ router.post("/questions", (req, res) => {
 			res.status(500).json({ message: "Failed to create new question" });
 		});
 }); // WORKING
-router.post("/question/:id/answer", (req, res) => {
+router.post("/question/:id/answer", async (req, res) => {
 	const answerData = req.body;
 
-	DevDeskModel.addAnswer(answerData)
+	await DevDeskModel.addAnswer(answerData)
 		.then((answer) => {
 			res.status(201).json(answer);
 		})
