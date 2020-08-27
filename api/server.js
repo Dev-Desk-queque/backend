@@ -1,10 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 
+const protectedRoute = require("../auth/restricted-mw.js");
 const DevDeskRouter = require("../devdesk/dev-router");
 const AuthRouter = require("../auth/auth-router.js");
 const TokenRouter = require("../auth/token-router.js");
-const protected = require("../auth/restricted-mw.js");
 
 const server = express();
 
@@ -18,7 +18,7 @@ server.use("/api/devdesk", DevDeskRouter);
 server.use("/api/devdesk/auth", AuthRouter);
 
 // This contains the GET/POST/DELETE requests that are locked behind authorization and will require the token from login
-server.use("/api/devdesk/protected", protected, TokenRouter);
+server.use("/api/devdesk/protected", protectedRoute, TokenRouter);
 
 server.get("/", (req, res) => {
 	res.json({ api: "up" });
